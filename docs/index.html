@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A public-safe FlyRank ML Internship capstone on refresh and content opportunity scoring." />
+  <title>Refresh Opportunity Scoring | Muhammad Hassaan Saqib Khan</title>
+  <style>
+    :root{
+      --bg:#f5f7fb; --paper:#ffffff; --ink:#172033; --muted:#667085;
+      --line:#dfe5ef; --accent:#3157d5; --accent2:#6c8cff;
+      --good:#087a55; --warn:#a35a00; --soft:#eef3ff;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,
+      "Segoe UI",sans-serif; background:var(--bg); color:var(--ink); line-height:1.65;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .hero{
+      background:linear-gradient(135deg,#132a6a 0%,#3157d5 55%,#7290ff 100%);
+      color:white; padding:72px 22px 58px;
+    }
+    .wrap{max-width:980px;margin:0 auto}
+    .eyebrow{
+      display:inline-block; border:1px solid rgba(255,255,255,.35);
+      border-radius:999px; padding:6px 11px; font-size:.82rem; letter-spacing:.04em;
+      background:rgba(255,255,255,.09)
+    }
+    h1{font-size:clamp(2.2rem,5vw,4.4rem);line-height:1.05;margin:20px 0 16px;max-width:900px}
+    .subtitle{font-size:1.18rem;max-width:780px;color:#edf1ff;margin:0}
+    .author{margin-top:28px;color:#dce5ff;font-weight:600}
+    nav{
+      position:sticky; top:0; z-index:10; background:rgba(255,255,255,.94);
+      backdrop-filter:blur(12px); border-bottom:1px solid var(--line)
+    }
+    nav .wrap{display:flex;gap:18px;overflow-x:auto;padding:12px 20px;white-space:nowrap}
+    nav a{font-size:.9rem;color:#344054}
+    main{padding:34px 20px 70px}
+    section{
+      background:var(--paper); border:1px solid var(--line); border-radius:18px;
+      padding:clamp(22px,4vw,38px); margin:20px 0; box-shadow:0 10px 28px rgba(28,39,66,.04)
+    }
+    h2{font-size:1.7rem;margin:0 0 18px}
+    h3{margin-top:28px}
+    .abstract{
+      border-left:5px solid var(--accent); background:var(--soft);
+    }
+    .metrics{
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+      gap:12px; margin:22px 0;
+    }
+    .metric{
+      border:1px solid var(--line); border-radius:14px; padding:18px;
+      background:#fbfcff
+    }
+    .metric b{display:block;font-size:1.65rem;color:var(--accent);line-height:1.15}
+    .metric span{font-size:.88rem;color:var(--muted)}
+    .table-wrap{overflow-x:auto}
+    table{border-collapse:collapse;width:100%;margin:18px 0;font-size:.93rem}
+    th,td{padding:12px 13px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    th{background:#f7f9fc;color:#344054}
+    .note{
+      background:#fff8eb;border:1px solid #f3d7a2;border-radius:12px;padding:15px 17px;
+      color:#6f4700;margin:18px 0
+    }
+    .safe{
+      background:#ecfdf5;border:1px solid #a7e8d0;border-radius:12px;padding:15px 17px;
+      color:#075b40;margin:18px 0
+    }
+    .chart{margin:24px 0}
+    .bar-row{
+      display:grid;grid-template-columns:minmax(150px,220px) 1fr 62px;gap:12px;
+      align-items:center;margin:11px 0
+    }
+    .bar-track{height:16px;background:#e9edf5;border-radius:999px;overflow:hidden}
+    .bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:999px}
+    .caption{font-size:.86rem;color:var(--muted);margin-top:10px}
+    .pill{
+      display:inline-block;padding:4px 9px;border-radius:999px;background:#eef3ff;
+      color:#2947aa;font-size:.78rem;font-weight:700;margin:2px 4px 2px 0
+    }
+    .actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+    .action{border:1px solid var(--line);border-radius:13px;padding:16px;background:#fbfcff}
+    .action strong{display:block;margin-bottom:5px}
+    footer{padding:30px 20px 55px;color:var(--muted);text-align:center}
+    code{background:#f1f4f9;padding:2px 6px;border-radius:5px}
+    ul{padding-left:22px}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">FlyRank ML Internship Capstone · Refresh / Content Opportunity Scoring</span>
+      <h1>Ranking Content Pages for Human Refresh Review</h1>
+      <p class="subtitle">
+        A public-safe machine-learning study that compares a hand-written rule with learned ranking models,
+        audits leakage, and turns validated scores into a transparent content action playbook.
+      </p>
+      <p class="author">Muhammad Hassaan Saqib Khan · 2026</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="wrap">
+      <a href="#abstract">Abstract</a>
+      <a href="#introduction">Introduction</a>
+      <a href="#data">Data</a>
+      <a href="#methodology">Methodology</a>
+      <a href="#results">Results</a>
+      <a href="#limitations">Limitations</a>
+      <a href="#recommendations">Recommendations</a>
+      <a href="#reproducibility">Reproducibility</a>
+      <a href="#acknowledgments">Acknowledgments</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="abstract" class="abstract">
+      <h2>Abstract</h2>
+      <p>
+        This project asks whether anonymized search-performance signals can help rank content pages for human refresh review.
+        I compared a Week-4 rule baseline with Logistic Regression and Random Forest using a grouped client holdout and
+        Precision@20 as the primary ranking metric. The initial Week-5 model comparison selected Logistic Regression, which
+        achieved 80% Precision@20 versus 45% for the rule baseline, but a later audit found that several trailing-90-day
+        features overlapped the retrospective outcome window. After restricting the analysis to pre-outcome measurements,
+        the more defensible validation produced 65% Precision@20 for Logistic Regression, while the final Week-7 queue
+        selected Random Forest at 70% Precision@20 on the same strict feature design. The result is a ranked,
+        human-reviewed decision-support playbook rather than an automated or causal content-refresh system.
+      </p>
+    </section>
+
+    <section id="introduction">
+      <h2>Introduction / Problem statement</h2>
+      <p>
+        Content teams often have more pages than they can review at once. A raw model score is not useful unless it helps a
+        person answer a practical question: <em>which pages should be inspected first, and why?</em>
+      </p>
+      <p>
+        This capstone supports that decision by ranking anonymized pages according to observed decline risk, previous
+        visibility, and estimated review effort. The intended user is a content strategist, SEO analyst, or editor.
+        Every recommendation remains subject to human review.
+      </p>
+    </section>
+
+    <section id="data">
+      <h2>Data</h2>
+      <p>
+        The analysis uses the public-safe FlyRank ML Internship starter slice in
+        <code>data/raw/content_refresh_anonymized.csv</code>. It contains 30,000 anonymized page-level rows across
+        32 pseudonymous clients. This is a teaching slice derived from the wider FlyRank warehouse; the model in this
+        capstone was not trained directly on all 79 million warehouse rows.
+      </p>
+      <p>
+        The retrospective outcome identifies whether a page was observed as declining. The strict validation design uses
+        measurements from the preceding 30-day window to avoid using information from the latest 30-day outcome period.
+      </p>
+      <div class="safe">
+        <strong>Public-safety exclusions:</strong> client names, domains, URLs, private queries, credentials, raw exports,
+        direct identifiers as model features, and label-derived fields were excluded.
+      </div>
+    </section>
+
+    <section id="methodology">
+      <h2>Methodology</h2>
+
+      <h3>Label and features</h3>
+      <p>
+        The evaluation label is a retrospective decline indicator derived from <code>trend_direction</code>.
+        The strict feature set uses only pre-outcome measurements:
+      </p>
+      <p>
+        <span class="pill">previous 30-day impressions</span>
+        <span class="pill">previous 30-day clicks</span>
+        <span class="pill">previous 30-day sessions</span>
+        <span class="pill">previous-window CTR</span>
+        <span class="pill">sessions per 100 impressions</span>
+        <span class="pill">measurement-availability flags</span>
+      </p>
+
+      <h3>Baseline</h3>
+      <p>
+        The Week-4 rule required at least 300 impressions and a valid position. It prioritised pages that were at least
+        180 days stale, had CTR at least 20% below the median for their position bucket, or met both conditions.
+      </p>
+
+      <h3>Models and validation</h3>
+      <p>
+        Logistic Regression and Random Forest were compared. Clients were split as groups so that no client appeared in
+        both training and testing. The random state was fixed at 42. Precision@20 was the primary metric because the
+        operational task is to identify the first 20 pages for review; Precision@50, average precision, and ROC AUC were
+        supporting metrics.
+      </p>
+
+      <h3>Leakage checks</h3>
+      <p>
+        The feature list excluded <code>content_id</code>, <code>client_id</code>, <code>trend_direction</code>,
+        <code>trend_pct</code>, the derived label, baseline scores, action labels, and reason codes. The audit also tested
+        a deliberately invalid <code>trend_pct</code> probe, which reached perfect metrics and confirmed that the harness
+        detects answer-derived leakage. That probe was removed from all valid conclusions.
+      </p>
+    </section>
+
+    <section id="results">
+      <h2>Results</h2>
+
+      <h3>Initial model versus Week-4 baseline</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Method</th><th>Base rate</th><th>Precision@20</th><th>Precision@50</th>
+              <th>Average precision</th><th>ROC AUC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Logistic Regression</strong></td><td>51.1%</td><td>80.0%</td><td>84.0%</td><td>0.632</td><td>0.630</td></tr>
+            <tr><td>Random Forest</td><td>51.1%</td><td>45.0%</td><td>62.0%</td><td>0.602</td><td>0.614</td></tr>
+            <tr><td>Week-4 rule baseline</td><td>51.1%</td><td>45.0%</td><td>48.0%</td><td>0.528</td><td>0.545</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="chart" aria-label="Precision at 20 comparison">
+        <div class="bar-row"><span>Logistic Regression</span><div class="bar-track"><div class="bar" style="width:80%"></div></div><strong>80%</strong></div>
+        <div class="bar-row"><span>Random Forest</span><div class="bar-track"><div class="bar" style="width:45%"></div></div><strong>45%</strong></div>
+        <div class="bar-row"><span>Rule baseline</span><div class="bar-track"><div class="bar" style="width:45%"></div></div><strong>45%</strong></div>
+        <p class="caption">Figure 1. Initial grouped-holdout Precision@20. These features were later audited for timing overlap.</p>
+      </div>
+
+      <h3>Leakage-aware validation</h3>
+      <div class="metrics">
+        <div class="metric"><b>65%</b><span>Strict Logistic Regression Precision@20</span></div>
+        <div class="metric"><b>0.594</b><span>Strict Logistic Regression average precision</span></div>
+        <div class="metric"><b>0.626</b><span>Strict Logistic Regression ROC AUC</span></div>
+        <div class="metric"><b>51.1%</b><span>Held-out positive base rate</span></div>
+      </div>
+      <p>
+        The audit identified 11 Week-5 features with overlapping-window risk. The initial 80% result is therefore reported
+        as a retrospective association, not as clean future prediction.
+      </p>
+
+      <h3>Final strict-feature queue model</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Model</th><th>Base rate</th><th>Precision@20</th><th>Precision@50</th><th>Average precision</th><th>ROC AUC</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Random Forest</strong></td><td>51.1%</td><td>70.0%</td><td>68.0%</td><td>0.597</td><td>0.637</td></tr>
+            <tr><td>Logistic Regression</td><td>51.1%</td><td>65.0%</td><td>64.0%</td><td>0.594</td><td>0.626</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Week 7 re-ran both candidates on the strict pre-outcome feature design and selected Random Forest for queue generation.
+        Its 70% Precision@20 is an observed grouped-holdout result and remains limited to this dataset and label definition.
+      </p>
+    </section>
+
+    <section id="limitations">
+      <h2>Limitations & honest framing</h2>
+      <ul>
+        <li>The label is retrospective and does not directly measure the causal effect of a future refresh.</li>
+        <li>The starter slice contains 30,000 pages across 32 pseudonymous clients, so external validity is limited.</li>
+        <li>The value score uses visibility as a proxy and is not a revenue or business-impact estimate.</li>
+        <li>Review effort is approximate and must be replaced by an editor’s real work estimate.</li>
+        <li>The model does not reveal or prove Google’s ranking algorithm.</li>
+        <li>Observed associations do not prove that staleness, CTR, or any other feature causes decline.</li>
+      </ul>
+      <div class="note">
+        The output should be described as <strong>observed, measured, directional, and decision-support</strong>.
+        It should not be described as automatic, causal, or production-ready.
+      </div>
+    </section>
+
+    <section id="recommendations">
+      <h2>Ranked recommendations</h2>
+      <p>
+        The final score combines model risk, previous-window visibility, and a lightweight effort estimate.
+        Every row receives human-readable reason codes.
+      </p>
+      <div class="actions">
+        <div class="action"><strong>REFRESH_REVIEW</strong>High observed risk and stale content. Inspect accuracy, intent, structure, and outdated sections.</div>
+        <div class="action"><strong>METADATA_REVIEW</strong>High observed risk, meaningful visibility, and CTR below the position reference. Review title and description alignment.</div>
+        <div class="action"><strong>DIAGNOSE_FIRST</strong>High observed risk with limited visibility. Check indexing, tracking, intent, and possible cannibalisation before editing.</div>
+        <div class="action"><strong>MONITOR_AND_REVIEW</strong>Medium risk with meaningful value. Recheck in a later measurement window.</div>
+        <div class="action"><strong>PROTECT_AND_MONITOR</strong>Low risk with strong visibility. Avoid unnecessary edits and continue monitoring.</div>
+        <div class="action"><strong>DATA_QUALITY_REVIEW</strong>Insufficient measurement history. Investigate data quality before drawing a performance conclusion.</div>
+      </div>
+      <h3>What must not be automated</h3>
+      <p>
+        The system must not automatically publish, rewrite, delete, merge, prune, redirect, or change metadata.
+        It must not expose private data, infer Google’s algorithm, or act solely on a model score.
+      </p>
+    </section>
+
+    <section id="reproducibility">
+      <h2>Reproducibility</h2>
+      <p>Repository and executed notebooks:</p>
+      <ul>
+        <li><a href="https://github.com/HassaanSaqib/FlyRankAI-Internship" target="_blank" rel="noopener">GitHub repository</a></li>
+        <li><a href="https://github.com/HassaanSaqib/FlyRankAI-Internship/blob/main/work/notebooks/w04_baseline_score.ipynb" target="_blank" rel="noopener">Week 4 — Baseline</a></li>
+        <li><a href="https://github.com/HassaanSaqib/FlyRankAI-Internship/blob/main/work/notebooks/w05_model.ipynb" target="_blank" rel="noopener">Week 5 — Model</a></li>
+        <li><a href="https://github.com/HassaanSaqib/FlyRankAI-Internship/blob/main/work/notebooks/w06_validation_audit.ipynb" target="_blank" rel="noopener">Week 6 — Validation and leakage audit</a></li>
+        <li><a href="https://github.com/HassaanSaqib/FlyRankAI-Internship/blob/main/work/notebooks/w07_action_playbook.ipynb" target="_blank" rel="noopener">Week 7 — Action playbook</a></li>
+        <li><a href="https://github.com/HassaanSaqib/FlyRankAI-Internship/blob/main/work/notebooks/capstone.ipynb" target="_blank" rel="noopener">Capstone notebook</a></li>
+      </ul>
+      <p>
+        The ranked queue CSV is intentionally regeneratable and remains outside Git. Committed notebooks and metric receipts
+        preserve the evidence used in this page.
+      </p>
+    </section>
+
+    <section id="acknowledgments">
+      <h2>Acknowledgments & data credit</h2>
+      <p>
+        Built on the
+        <a href="https://flyrank.ai" target="_blank" rel="noopener">FlyRank ML Internship dataset</a>.
+        I acknowledge the FlyRank internship team for the public-safe data release, notebook framework, research guidance,
+        and emphasis on leakage-aware validation and honest claims.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Research artifact by Muhammad Hassaan Saqib Khan · Public-safe · Human-reviewed decision support</p>
+  </footer>
+</body>
+</html>
